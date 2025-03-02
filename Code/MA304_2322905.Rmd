@@ -14,22 +14,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE, include = TRUE, warning = FALSE, message = FALSE, comment = NA)
 ```
 
-# A Comprehensive Analysis of Policing Data in Colchester (2023)
-
-
-
-**Introduction:**
-
-The goal of the examination of Colchester's 2023 police data is to offer important new perspectives on the street-level criminal occurrences that were recorded in the region during that time. This study aims to shed light on the nature, frequency, and spatial distribution of reported crimes by utilizing the dataset 'colchester_data,' which contains detailed information about individual incidents, including crime categories, dates, geographical coordinates, street names, and outcome statuses.
-
-The UK Police Data API was utilized to retrieve a complete collection of street-level criminal occurrences for the dataset. Every entry in the dataset represents a distinct occurrence and includes important information about the circumstances leading up to the reported crime. Through the analysis of this extensive information, we hope to learn more about the dynamics of Colchester police, pinpoint common categories of crime, investigate time trends, and examine spatial patterns of criminal activity.
-
-This project intends to advance knowledge about Colchester's community safety programs, police enforcement tactics, and crime prevention through methodical dataset examination and analysis. We can support evidence-based decision-making, direct resource allocation initiatives, and promote cooperative relationships between law enforcement agencies, legislators, and community stakeholders by gaining insights into the dynamics of reported incidents. This analysis emphasizes how crucial data-driven strategies are for tackling issues related to public safety and fostering an atmosphere that is safer and more secure for both locals and tourists.
-
-
-**Data Visualization with R: Exploring Key Packages**
-
-In this assignment, we utilized several essential R packages for data visualization: ggplot2, tidyr, plotly, and leaflet.
 
 ```{r , warning=FALSE, comment= " ", message= FALSE}
 # packages we need
@@ -39,26 +23,6 @@ library(plotly)
 library(leaflet)
 
 ```
-
-**1. ggplot2**: ggplot2 is a flexible and strong R package for visualizing data. It offers a graphic grammar that enables the production of a large variety of plots, from straightforward scatter plots to complex multilayered representations. Customization is essential when using ggplot2, since it gives you total control over themes, scales, and aesthetics, allowing you to produce highly personalized and publication-quality graphics.
-
-Reference: Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer. ISBN: 978-3-319-24277-4.
-
-**2. tidyr**: tidyr is a toolkit for reshaping and tidying data, which is a supplement to ggplot2. It provides tools like spread() and gather() to cleanly reorganize unstructured datasets into a format that is ideal for ggplot2 visualization. Our workflow for data analysis and visualization can be streamlined by integrating data with ggplot2 in an easy-to-integrate manner.
-
-Reference: Wickham, H., & Henry, L. (2019). tidyr: Tidy Messy Data. R package version 1.0.0. Retrieved from https://CRAN.R-project.org/package=tidyr
-
-**3. plotly**: You may create dynamic and interactive visualizations right from R with the help of this interactive graphing library. Plotly allows you to create a wide range of interactive chart formats, including bar charts, scatter plots, and 3D plots with zooming, panning, and hover tooltips. Plotly is the perfect tool for producing interesting and investigative visualizations that can be shared online and integrated into web apps because of its interactive capabilities.
-
-Reference: Sievert, C., Parmer, C., Hocking, T., Chamberlain, S., Ram, K., Corvellec, M., & Despouy, P. (2020). plotly: Create Interactive Web Graphics via 'plotly.js'. R package version 4.9.2.1. Retrieved from https://CRAN.R-project.org/package=plotly
-
-**4. leaflet**: Leaflet is the recommended package for visualizing spatial data. It enables the plotting and customization of geographic data points, polygons, and lines to create interactive maps in R. For geographical research and presentation, Leaflet allows you to generate visually appealing and educational maps with base maps, overlays, popups, and markers.
-
-Reference: Cheng, J., Karambelkar, B., Xie, Y., & Wickham, H. (2020). leaflet: Create Interactive Web Maps with the JavaScript 'Leaflet' Library. R package version 2.0.4. Retrieved from https://CRAN.R-project.org/package=leaflet
-
-
-We may access a vast array of R data visualization capabilities by utilizing these packages. These packages offer the flexibility and versatility required to successfully communicate insights from our data, whether it is for visualizing spatial data, cleaning up dirty datasets, investigating correlations in data, or producing interactive charts.
-
 
 ```{r, comment= " "}
 # Read the dataset
@@ -72,41 +36,6 @@ summary_table
 
 
 ```
-
-
-**Description:**
-
-The table that provides a summary of recorded occurrences in Colchester is broken down by category, offering valuable information about the distribution and frequency of different kinds of criminal activity in the area.
-
-**Key Findings:**
-
-- **1. Violent Crime**: Violent crime is the most common category with 2633 documented instances, showing a serious problem for Colchester's public safety and law enforcement operations.
-
-- **2. Anti-Social Behaviour**: 677 recorded occurrences are related to anti-social behavior, which comes in close second. This category includes a variety of disruptive activities, highlighting the value of proactive community engagement and social issue resolution.
-
-
-- **3. Criminal Damage/Arson**: The 581 recorded cases of arson and criminal damage demonstrate the harm that property-related crimes cause to the community and the necessity of taking precautions to stop vandalism and property destruction.
-
-
-
-- **4. Shoplifting and Theft**: Property-related crimes including theft (491 instances) and shoplifting (554 incidents) are also common, indicating issues with retail security and theft prevention techniques.
-
-- **5. Public Order and Other Offences**: The general landscape of reported occurrences is influenced by public order violations (532 incidents) and other theft-related offenses (406 incidents), highlighting the complex nature of law enforcement's efforts to uphold public safety and order.
-
-- **6. Vehicle-Related Crimes**: The number of car crime occurrences (406 incidents) and bicycle theft incidents (235 incidents) highlights the significance of implementing theft prevention tactics and vehicle security measures to protect personal property and minimize criminal opportunities.
-
-- **7. Drug Offenses and Robbery**: Robberies (94 events) and drug-related offenses (208 instances) provide additional difficulties for law enforcement, underscoring the necessity of focused interventions to combat violent crime and drug trafficking.
-
-- **8. Burglary, Theft from the Person, and Possession of Weapons**: A subgroup of reported occurrences include burglaries (225 episodes), thefts from person(76 incidents), and weapons possession (74 incidents). Each of these incidents calls for a specific set of actions to reduce dangers to public safety and security.
-
-**Implications:**
-
-Law enforcement agencies, legislators, and community stakeholders can all benefit from the distribution of reported occurrences by category when it comes to allocating resources, putting preventative measures in place, and developing strategies to deal with certain crime trends and patterns in Colchester. In order to improve community safety and well-being, stakeholders can work together more successfully if they have a clear picture of the frequency and kind of reported occurrences.
-
-**Conclusion:**
-
-The summary table offers a thorough rundown of occurrences that have been recorded broken down by category, emphasizing the intricate dynamics of crime in Colchester and the value of using data-driven strategies to solve public safety issues. In the future, maintaining cooperation and making early interventions will be crucial to fostering a secure atmosphere for both locals and guests.
-
 
 ```{r}
 # Pie chart
@@ -130,20 +59,6 @@ pie_chart <- ggplot(colchester_data, aes(x = "", fill = category)) +
 print(pie_chart)
 ```
 
-
-**1. Overview of Colchester's Crime Categories**: The distribution of crime categories in Colchester is clearly shown by the pie chart, which also shows the relative frequency of each category.
-
-**2. Most Common Crime Category**: With 2633 documented cases, "violent-crime" is the most common category, highlighting its considerable influence on the community.
-
-**3. Frequency of Other Categories**: - After "violent crime," two noteworthy categories are "criminal damage arson" and "anti-social behavior," with 677 and 581 instances, respectively. This shows how frequently disruptive acts occur in the neighborhood.
-
-**4. Notable Incidences**: - The pie chart also shows noteworthy occurrences of other crimes, like "other-theft" (491 incidents), "public-order" (532 episodes), and "shoplifting" (554 events).
-
-**5. Diverse Range of Criminal Activity**: - The fact that different kinds of crimes are committed in Colchester highlights the range of criminal activity that is committed there.
-
-
-In order to address the most urgent issues pertaining to crime and public safety in Colchester, legislators, law enforcement organizations, and community leaders can use this visual depiction to gain important information that will help them allocate resources and carry out focused interventions.
-
 ```{r}
 # Create histogram
 histogram <- ggplot(colchester_data, aes(x = category)) +
@@ -160,15 +75,6 @@ interactive_histogram <- ggplotly(histogram)
 # Display the interactive plot
 interactive_histogram
 ```
-
-**Crime Categories:** The histogram portrays several distinct crime categories, including but not limited to anti-social behavior, burglary, theft, assault, and vandalism. A distinct bar is used to represent each category, and the height of the bar indicates how frequently occurrences are reported.
-
-**Frequency Distribution:** For each crime category, the height of the bar represents the total number of incidents that have been reported. You can determine which kinds of crimes are more common in Colchester by looking at the bars' respective heights.
-
-
-**Variability:** The Histogram illustrates how the frequency of various crime categories varies. Certain categories have higher frequencies, which indicate that those particular crimes occur more frequently, whilst other categories have lower frequencies, which indicate that those crimes are less common in the community.
-
-Finally, the histogram clearly and informatively summarizes the reported incidents in the community by visualizing the distribution of crime categories for 2023 in Colchester. To improve public safety and promote community well-being, focused interventions and initiatives must take into account the prevalence of various crime categories.
 
 ```{r}
 # Box plot
@@ -188,28 +94,6 @@ interactive_boxplot <- ggplotly(boxplot)
 interactive_boxplot
 ```
 
-
-
-**Description:**
-
-The box plot illustrates the distribution of latitude values across different crime categories in Colchester. Each box represents the interquartile range (IQR) of latitude values for a specific crime category, with the median marked by a horizontal line inside the box. The whiskers extend to the minimum and maximum latitude values, excluding outliers, which are represented as individual points beyond the whiskers.
-
-
-**1. Central Tendency:** The horizontal line inside each box is the median latitude value for each category of crimes. The medians of some categories, such as "violent crime," "anti-social-behaviour," and "criminal damage arson," are located around the same latitude, indicating that these kinds of crimes typically happen in comparable regions or localities.
-
-**2. Variability:** The interquartile range (IQR) of the latitude values for each category is represented by the height of the boxes. The presence of larger boxes, including those labelled "violent-crime" and "anti-social-behaviour", suggests that the latitude values of these crimes are distributed more widely throughout Colchester.
-
-**3. Outliers:** Latitude values that considerably depart from the general trend of the associated crime category are shown by the individual points outside the whiskers (vertical lines extending from the boxes). Certain categories—such as "violent-crime" and "criminal-damage-arson"—have multiple outliers, suggesting that certain crimes happened in places that are not typical of these types of crimes.
-
-**4. Hotspot Identification:** It could be able to pinpoint probable hotspots or locations with a higher prevalence of particular crime types by comparing the box plot with a map of Colchester. Broader boxes may imply crimes that are more widely distributed around the city, whereas narrower boxes and fewer outliers may indicate more localized occurrences.
-
-**5. Spatial Distribution:** Based on latitude values, the box plot enables comparison of the spatial distribution of various crime types. While non-overlapping boxes might represent different spatial patterns for various crime kinds, categories with overlapping or similar box ranges might suggest that they typically occur in similar geographic areas.
-
-**Recommendations:**
-
-Targeted interventions and resource allocation can be influenced by policymakers and law enforcement organizations using the box plot's insights. As shown by the box plots, areas where certain crime categories are more concentrated might need more patrols or community-based programs to address the underlying problems that lead to those crimes.
-
-
 ```{r}
 # Scatter plot
 
@@ -227,29 +111,6 @@ plotly
 
 ```
 
-
-**Description:**
-
-The scatter plot, which plots latitude values on the y-axis and longitude values on the x-axis, visually depicts the spatial distribution of crime incidences in Colchester. Every point on the plot represents a distinct criminal incidence, and points that overlap can be seen by adjusting the transparency. The general locations of the incidents throughout the city are shown by the blue hue of the pointers and we can click and move on individual data points to get particular information.
-
-
-**1. Crime Hotspots:** Dense point clusters on the scatter plot indicate locations with high rates of criminal events. These "hotspots" or clusters are areas or neighborhoods in Colchester that are either more likely to experience criminal activity or have a greater frequency of reported crimes.
-
-**2. Spatial Patterns:** Despite the fact that crime scenes appear to be dispersed around the region, some patterns can be seen. For example, the middle of the plot appears to have a higher concentration of occurrences, which may be indicative of more commercial or heavily populated sections of Colchester.
-
-**3. Outliers:** Potential outliers, or crime scenes that seem remote or isolated from the major clusters, may also be visible in the scatter plot. These anomalies might be instances that happen in less populated or isolated areas, or they might be signs of particular kinds of crimes that frequently happen there.
-
-**4. Geographical Context:** It would be feasible to link the locations of the crimes to certain neighborhoods, sites, or infrastructure by overlaying a map of Colchester over the scatter plot. This could offer insightful information about the possible causes of the observed spatial patterns, including land use patterns, socioeconomic circumstances, and the existence of certain amenities or attractions.
-
-**Recommendations:**
-
-The scatter plot provides valuable insights that law enforcement agencies and local authorities can use to efficiently allocate resources and perform targeted initiatives. Through targeted interventions in high-crime regions, law enforcement can enhance public safety and lower the number of criminal incidents.
-
-
-
-
-**Correlation Analysis:**
-
 ```{r , comment= " "}
 # Calculate correlation coefficient
 correlation_coefficient <- cor(colchester_data$lat, colchester_data$long)
@@ -257,23 +118,6 @@ correlation_coefficient <- cor(colchester_data$lat, colchester_data$long)
 # Print correlation coefficient
 print(correlation_coefficient)
 ```
-
-
-**Description:**
-
-The correlation study looks at how the latitude and longitude values for crime incidences in Colchester relate to one another. We may measure the magnitude and direction of the linear relationship between these two variables by computing the correlation coefficient.
-
-
-**Interpretation:**
-
-**Correlation Coefficient:** There is a weak negative linear relationship between latitude and longitude values, as indicated by the correlation coefficient, which was found to be roughly -0.090. This implies that longitude tends to slightly decrease with increasing latitude and vice versa. The association is weak and not very linear, though, as indicated by the correlation coefficient's closeness to zero.
-
-
-
-**Insights:**
-
-**Spatial Association:** The latitude and longitude values have a tiny negative correlation, which suggests that there is minimal probability for criminal episodes to occur in particular geographic locations with similar coordinates. Based only on latitude and longitude information, crime episodes in Colchester do not appear to be significantly organized or related with specific geographic regions, as indicated by the lack of a strong linear relationship.
-
 
 ```{r}
 #time series plot
@@ -290,23 +134,6 @@ ggplot(colchester_data, aes(x = date)) +
        y = "Count") +
   theme_minimal()
 ```
-
-The dataset of crimes in Colchester served as the focus of the analysis, which started with data preparation and examination to determine its format and structure. To standardize date formats and enable analysis, cleaning and transformation procedures were used. Using a time series plot to visualize crime trends across time made it possible to spot trends and gain understanding of temporal distribution. The conclusions drawn from this research can help Colchester's policy and decision-making processes when it comes to crime prevention and law enforcement tactics.
-
-**1. Overall Trend:** Each bar represents the total number of crimes for a particular month, and the plot shows the number of crimes over time. The bar heights demonstrate a stable pattern or trend in criminal activity during the investigated period by showing that the number of crime events stays generally constant across the months displayed.
-
-
-**2. Seasonal Patterns:** The data may show some swings or possible seasonal patterns, even though the overall trend looks consistent. As an example, the bar for October is marginally higher than the bars for the other months, suggesting that there may have been an increase in crime at that time. Nevertheless, additional examination over a longer duration would be imperative to definitively validate any seasonal patterns.
-
-**3. Peak Periods:** January 2023 is represented by the largest bar in the figure, meaning that this month saw the greatest number of criminal incidents in comparison to the other months displayed. This might draw attention to a time when there was a spike in criminal activity or to particular instances or situations that made the spike in incidents during that period of time possible.
-
-**4. Comparative Analysis:** Stakeholders can determine times with comparatively greater or lower crime rates by comparing the bar heights between various months. Law enforcement authorities, legislators, and community organizations may find this information useful in allocating resources, carrying out focused interventions, or modifying plans in light of emerging trends.
-
-**Insights and Interpretation**:
-The temporal distribution of crime events in Colchester is visible via the time series plot.
-To assist in the creation of policies and the making of decisions, trends, seasonality, and patterns in crime rates throughout time can be examined.
-The data that has been presented can be used to conduct additional analysis, such as pinpointing hotspots or examining different categories of crime.
-
 
 ```{r}
 
@@ -327,18 +154,6 @@ popup = ~paste("Category:", category, "<br>Date:", date))
 # Print the map
 crime_map
 ```
-
-
-**Creating the Leaflet Map:**
-I made an interactive map to show the spatial distribution of crimes in Colchester using the Leaflet program. I entered the center coordinates and zoom level to center the map's initial view on Colchester. Subsequently, I utilized pop-up windows to display information about each crime location, such as the category and date, on each marker I placed to the map.
-
-**Results:**
-The resulting Leaflet map gives Colchester's crime hotspots and trends a visual depiction. Zooming in and out and clicking on markers allow users to interact with the map and view individual criminal details.
-
-**Conclusion:**
-In conclusion, spatial data, such crime incidences in a certain location, can be seen and analyzed using the Leaflet package. We can gain a better understanding of the spatial distribution of crimes and possibly pinpoint areas that need more focus from law enforcement or community interventions by generating an interactive map.
-
-
 
 
 
